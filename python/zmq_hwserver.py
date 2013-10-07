@@ -8,7 +8,7 @@ import time
 
 context = zmp.Context()
 
-socket = context.socket(zmq.REP)
+socket = context.socket(zmq.REP) #REQUEST/REPLY, bidirectional, load balanced and state based
 socket.bind("tcp://*:5555")
 
 while True:

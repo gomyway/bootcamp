@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import zmq
 from random import choice
 context = zmq.Context()

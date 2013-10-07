@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #
 #   Hello World server in Python
 #   Binds REP socket to tcp://*:5555
@@ -6,8 +7,7 @@
 import zmq
 import time
 
-context = zmp.Context()
-
+context = zmq.Context()
 socket = context.socket(zmq.REP) #REQUEST/REPLY, bidirectional, load balanced and state based
 socket.bind("tcp://*:5555")
 

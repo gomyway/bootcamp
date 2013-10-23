@@ -64,21 +64,25 @@ def plot_models(x, y, models, fname, mx=None, ymax=None, xmin=None):
 plot_models(x, y, None, os.path.join("..", "1400_01_01.png"))
 
 # create and plot models
+#fit a straight line to the data, 
+#polyfit: given data x and y and the desired order of the polynomial (straight line has order 1),
+# find the model function that minimize the error() function (squared error)
+#fp1 is the parameters of the model function, residuals, rank, sv, rcond are additional information get by setting full=true
 fp1, res, rank, sv, rcond = sp.polyfit(x, y, 1, full=True)
 print("Model parameters: %s" % fp1)
 print("Error of the model:", res)
 f1 = sp.poly1d(fp1)
-f2 = sp.poly1d(sp.polyfit(x, y, 2))
-f3 = sp.poly1d(sp.polyfit(x, y, 3))
-f10 = sp.poly1d(sp.polyfit(x, y, 10))
-f100 = sp.poly1d(sp.polyfit(x, y, 100))
+f2 = sp.poly1d(sp.polyfit(x, y, 2)) #polynomial of degree of 2
+f3 = sp.poly1d(sp.polyfit(x, y, 3)) #polynomial of degree of 3
+f10 = sp.poly1d(sp.polyfit(x, y, 10)) #polynomial of degree of 10
+f100 = sp.poly1d(sp.polyfit(x, y, 100)) #polynomial of degree of 100
 
 plot_models(x, y, [f1], os.path.join("..", "1400_01_02.png"))
 plot_models(x, y, [f1, f2], os.path.join("..", "1400_01_03.png"))
 plot_models(
     x, y, [f1, f2, f3, f10, f100], os.path.join("..", "1400_01_04.png"))
 
-# fit and plot a model using the knowledge about inflection point
+# fit and plot a model using the knowledge about inflection point - the week 3.5
 inflection = 3.5 * 7 * 24
 xa = x[:inflection]
 ya = y[:inflection]
@@ -152,5 +156,6 @@ plot_models(
 from scipy.optimize import fsolve
 print(fbt2)
 print(fbt2 - 100000)
+#fsolve finds the root of polynomial f(x)=0, with a starting point 800 as the first estimate of that root
 reached_max = fsolve(fbt2 - 100000, 800) / (7 * 24)
 print("100,000 hits/hour expected at week %f" % reached_max[0])

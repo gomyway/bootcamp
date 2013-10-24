@@ -10,6 +10,11 @@ import numpy as np
 from threshold import learn_model, apply_model, accuracy
 
 features, labels = load_dataset('seeds')
+#labels are like ['1','1','2','3']
+label_names = np.array(['Kama', 'Rosa' , 'Canadian'])
+
+labels = label_names[labels.astype(np.int)-1]
+
 labels = labels == 'Canadian'
 
 error = 0.0

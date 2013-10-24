@@ -7,12 +7,12 @@
 
 import numpy as np
 
-
+#knn, k means number of neighbors to check, k>1 will take the majority vote from k neighbors
 def learn_model(k, features, labels):
     return k, features.copy(), labels.copy()
 
 
-def plurality(xs):
+def plurality(xs):#return the one with most number of occurrence
     from collections import defaultdict
     counts = defaultdict(int)
     for x in xs:
@@ -29,9 +29,9 @@ def apply_model(features, model):
     for f in features:
         label_dist = []
         for t, ell in zip(train_feats, labels):
-            label_dist.append((np.linalg.norm(f - t), ell))
-        label_dist.sort(key=lambda d_ell: d_ell[0])
-        label_dist = label_dist[:k]
+            label_dist.append((np.linalg.norm(f - t), ell)) #np.linalg.norm(array) = sqrt(sum(x^2))
+        label_dist.sort(key=lambda d_ell: d_ell[0]) #sort by distance in ascending order
+        label_dist = label_dist[:k] #take the closest k neighbors
         results.append(plurality([ell for _, ell in label_dist]))
     return np.array(results)
 

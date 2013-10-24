@@ -52,11 +52,22 @@ def load_dataset2(dataset_name):
 if __name__ == '__main__':
     import unittest
 
+    
     class TestLoad(unittest.TestCase):
         def setUp(self):
             pass
+                
+        def test_iris(self):
+            features, labels = load_dataset('iris')
+            assert len(features[0]) == 4
+            assert len(features)
+            assert len(features) == len(labels)
+
         
-        def load_dataset(self):
+        def test_seeds(self):
             features, labels = load_dataset('seeds')
-        
+            assert len(features[0]) == 7
+            assert len(features)
+            assert len(features) == len(labels)
+            
     unittest.main()  

@@ -46,6 +46,18 @@ def download_file(url,file_name=None):
 url = "http://archive.ics.uci.edu/ml/machine-learning-databases/00236/seeds_dataset.txt"
 filename = download_file(url,"../../data/seeds.tsv")
 print(filename)
+
+from sklearn.datasets import load_iris
+import numpy as np
+
+data = load_iris()
+features = data['data']
+labels = data['target_names'][data['target']]
+filename = "../../data/iris.tsv"
+with open(filename, 'w') as ofile:
+    for f, n in zip(features, labels):
+        print >>ofile, "\t".join(map(str, f) + [n])
+print(filename)
 # Data Set Information:
 # 
 # The examined group comprised kernels belonging to three different varieties of wheat: Kama, Rosa and Canadian, 70 elements each, randomly selected for 

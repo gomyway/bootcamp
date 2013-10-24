@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 #
 #   Hello World client in Python
 #   Connects REQ socket to tcp://localhost:5555
@@ -6,7 +7,6 @@
 import zmq
 
 context = zmq.Context()
-
 #  Socket to talk to server
 print "Connecting to hello world server..."
 socket = context.socket(zmq.REQ) #REQUEST/REPLY, bidirectional, load balanced and state based

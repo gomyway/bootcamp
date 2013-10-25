@@ -48,12 +48,12 @@ vectorizer = StemmedTfidfVectorizer(
     min_df=1, stop_words='english', decode_error='ignore')
 print(vectorizer)
 
-X_train = vectorizer.fit_transform(posts)
+X_train = vectorizer.fit_transform(posts) #learning/counting feature vectors
 
 num_samples, num_features = X_train.shape
 print("#samples: %d, #features: %d" % (num_samples, num_features))
 
-new_post_vec = vectorizer.transform([new_post])
+new_post_vec = vectorizer.transform([new_post])#prepare testing feature vector
 print(new_post_vec, type(new_post_vec))
 print(new_post_vec.toarray())
 print(vectorizer.get_feature_names())
@@ -64,9 +64,9 @@ def dist_raw(v1, v2):
     return sp.linalg.norm(delta.toarray())
 
 
-def dist_norm(v1, v2):
-    v1_normalized = v1 / sp.linalg.norm(v1.toarray())
-    v2_normalized = v2 / sp.linalg.norm(v2.toarray())
+def dist_norm(v1, v2):#this normalized distance will be always less than 2
+    v1_normalized = v1 / sp.linalg.norm(v1.toarray()) #so that norm(v1_normalized)==1
+    v2_normalized = v2 / sp.linalg.norm(v2.toarray()) #i.e. a unit vector 
 
     delta = v1_normalized - v2_normalized
 

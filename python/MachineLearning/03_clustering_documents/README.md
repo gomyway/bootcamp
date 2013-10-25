@@ -7,7 +7,9 @@ register, but it is totally free. When being logged in, you will
 see a ZIP download link.
 
 % mkdir -p ch03/data
+
 % cd  ch03/data
+
 % unzip /path/to/dataset-379-20news-18828_XXXXX.zip
 
 http://scikit-learn.org/stable/auto_examples/mlcomp_sparse_document_classification.html

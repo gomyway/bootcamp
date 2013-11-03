@@ -1,0 +1,6 @@
+cudamat: cudamat.cu cudamat.cuh cudamat_kernels.cu cudamat_kernels.cuh learn.cu learn_kernels.cu learn_kernels.cuh cudamat_conv.cu cudamat_conv.cuh cudamat_conv_kernels.cu cudamat_conv_kernels.cuh
+	nvcc -O --ptxas-options=-v -o libcudamat.dll --shared cudamat.cu cudamat_kernels.cu -lcublas -m32
+	nvcc -O --ptxas-options=-v -o libcudalearn.dll --shared learn.cu learn_kernels.cu -lcublas -m32
+	nvcc -O --ptxas-options=-v -o libcudamat_conv.dll --shared cudamat_conv.cu cudamat_conv_kernels.cu -lcublas -m32
+clean:
+	rm *.linkinfo *.pyc *.so

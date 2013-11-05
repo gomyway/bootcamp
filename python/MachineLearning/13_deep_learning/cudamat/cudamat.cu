@@ -66,8 +66,12 @@ DLLEXPORT extern int cuda_set_device(int deviceId) {
     
     if (checkCUDAError())
         return CUDA_ERROR;
-    else
-        return 0;
+    else{        
+	cudaDeviceProp deviceProp;
+        cudaGetDeviceProperties(&deviceProp, deviceId);
+        printf("\nUse Device %d: \"%s\"\n", deviceId, deviceProp.name);
+	return 0;    	
+    }
 }
 
 DLLEXPORT extern int init_random(rnd_struct* rnd_state, int seed, char* cudamatpath) {

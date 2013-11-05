@@ -1,5 +1,5 @@
 INCLUDE := -I${HOME}/eigen
-CCFLAGS := -O3 -fPIC -arch i386 -arch x86_64
+CCFLAGS := -O3 -fPIC# -arch i386 -arch x86_64
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S), Linux)
 	CCFLAGS += -shared
